@@ -1,0 +1,447 @@
+<!-- <div class="card-content collapse show">
+    <div class="card-body">
+      <form
+        class="form-horizontal"
+        (ngSubmit)="onSubmit(aboutusEdit)"
+        #aboutusEdit="ngForm"
+      >
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group is-filled">
+              <label class="bmd-label-floating">about_banner_image</label>
+              <input
+              (change)="onChange1($event)"
+                type="file"
+                formControlName="about_banner_image"
+                class="form-control"
+                id="about_banner_image"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group is-filled">
+              <label class="bmd-label-floating">about_section_image</label>
+              <input
+              (change)="onChange2($event)"
+                type="file"
+                formControlName="about_section_image"
+                class="form-control"
+                id="about_section_image"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">en_about_section_title</label>
+              <input
+                type="text"
+                formControlName="en_about_section_title"
+                id="en_about_section_title"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">ar_about_section_title</label>
+              <input
+                type="text"
+                formControlName="ar_about_section_title"
+                id="ar_about_section_title"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">en_about_section_text</label>
+              <input
+                type="text"
+                formControlName="en_about_section_text"
+                id="en_about_section_text"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">ar_about_section_title</label>
+              <input
+                type="text"
+                formControlName="ar_about_section_title"
+                id="ar_about_section_title"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">en_vision_title</label>
+              <input
+                type="text"
+                formControlName="en_vision_title"
+                id="en_vision_title"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">ar_vision_title</label>
+              <input
+                type="text"
+                formControlName="ar_vision_title"
+                id="ar_vision_title"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">en_vision_text</label>
+              <input
+                type="text"
+                formControlName="en_vision_text"
+                id="en_vision_text"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">ar_vision_text</label>
+              <input
+                type="text"
+                formControlName="ar_vision_text"
+                id="ar_vision_text"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">en_mission_title</label>
+              <input
+                type="text"
+                formControlName="en_mission_title"
+                id="en_mission_title"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">ar_mission_title</label>
+              <input
+                type="text"
+                formControlName="ar_mission_title"
+                id="ar_mission_title"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">en_mission_text</label>
+              <input
+                type="text"
+                formControlName="en_mission_text"
+                id="en_mission_text"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group">
+              <label class="bmd-label-floating">ar_mission_text</label>
+              <input
+                type="text"
+                formControlName="ar_mission_text"
+                id="ar_mission_text"
+                class="form-control"
+
+              />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group bmd-form-group is-filled">
+              <label class="bmd-label-floating">mission_vision_image</label>
+              <input
+              (change)="onChange3($event)"
+                type="file"
+                formControlName="mission_vision_image"
+                class="form-control"
+                id="mission_vision_image"
+
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row no-gutters justify-content-end">
+          <button class="btn btn-primary" [disabled]="aboutusEdit.invalid">
+            Edit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div> -->
+  <div class="card">
+
+    <div class="card-content collapse show">
+      <div class="card-body">
+          <div *ngIf="error" class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
+          <div *ngIf="success" class="alert alert-success" role="alert">
+            {{success}}
+          </div>
+          <form
+            class="form-horizontal"
+            (ngSubmit)="onSubmit()"
+            [formGroup]="aboutusEdit"
+          >
+            <div class="row">
+              <div class="col-md-6">
+
+                <div class="form-group bmd-form-group is-filled">
+                  <div class="row align-items-end">
+                    <div class="col-md-9">
+                      <label class="bmd-label-floating">About banner image</label>
+                      <input
+                      (change)="onChangeFile1($event)"
+                        type="file"
+                        class="form-control"
+                        id="about_banner_image"
+
+                      />
+
+                    </div>
+                    <div class="col-md-3">
+                      <img [src]="aboutLink+aboutUsData.about_banner_image" class="w-100" alt="">
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group is-filled">
+                  <div class="row align-items-end">
+                    <div class="col-md-9">
+                      <label class="bmd-label-floating">About section image</label>
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="about_section_image"
+                        (change)="onChangeFile2($event)"
+
+                      />
+
+                    </div>
+                    <div class="col-md-3">
+                      <img [src]="aboutLink+aboutUsData.about_section_image" class="w-100" alt="">
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">en_about_section_title</label>
+                  <input
+                    type="text"
+                    formControlName="en_about_section_title"
+                    id="en_about_section_title"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.en_about_section_title"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">ar_about_section_title</label>
+                  <input
+                    type="text"
+                    formControlName="ar_about_section_title"
+                    id="ar_about_section_title"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.ar_about_section_title"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">en_about_section_text</label>
+                  <input
+                    type="text"
+                    formControlName="en_about_section_text"
+                    id="en_about_section_text"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.en_about_section_text"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">ar_about_section_text</label>
+                  <input
+                    type="text"
+                    formControlName="ar_about_section_text"
+                    id="ar_about_section_title"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.ar_about_section_text"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">en_vision_title</label>
+                  <input
+                    type="text"
+                    formControlName="en_vision_title"
+                    id="en_vision_title"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.en_vision_title"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">ar_vision_title</label>
+                  <input
+                    type="text"
+                    formControlName="ar_vision_title"
+                    id="ar_vision_title"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.ar_vision_title"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">en_vision_text</label>
+                  <input
+                    type="text"
+                    formControlName="en_vision_text"
+                    id="en_vision_text"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.en_vision_text"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">ar_vision_text</label>
+                  <input
+                    type="text"
+                    formControlName="ar_vision_text"
+                    id="ar_vision_text"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.ar_vision_text"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">en_mission_title</label>
+                  <input
+                    type="text"
+                    formControlName="en_mission_title"
+                    id="en_mission_title"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.en_mission_title"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">ar_mission_title</label>
+                  <input
+                    type="text"
+                    formControlName="ar_mission_title"
+                    id="ar_mission_title"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.ar_mission_title"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">en_mission_text</label>
+                  <input
+                    type="text"
+                    formControlName="en_mission_text"
+                    id="en_mission_text"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.en_mission_text"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group">
+                  <label class="bmd-label-floating">ar_mission_text</label>
+                  <input
+                    type="text"
+                    formControlName="ar_mission_text"
+                    id="ar_mission_text"
+                    class="form-control"
+                    [(ngModel)]="aboutUsData.ar_mission_text"
+
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group bmd-form-group is-filled">
+                  <div class="row align-items-end">
+                    <div class="col-md-9">
+                      <label class="bmd-label-floating">Mission vision image</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="mission_vision_image"
+                    (change)="onChangeFile3($event)"
+
+                  />
+
+                    </div>
+                    <div class="col-md-3">
+                      <img [src]="aboutLink+aboutUsData.mission_vision_image" class="w-100" alt="">
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="row no-gutters justify-content-end">
+              <button class="btn btn-primary" [disabled]="aboutusEdit.invalid">
+                Edit about us
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>

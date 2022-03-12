@@ -1,0 +1,196 @@
+
+<div class="" *ngIf="loading">
+  <app-loading></app-loading>
+</div>
+
+<div class="" *ngIf="loadingAction">
+  <app-loader-action></app-loader-action>
+</div>
+<div class="card"  [ngClass]="{'card-fullscreen': fullscreed}">
+  <div class="card-content collapse show">
+    <div class="card-header bg-primary bg-darken-2 text-center align-items-center card-title-bold text-capitalize row no-gutters">
+      <div class="col-lg-9">
+
+        <h3 class="mb-0 text-left">{{pageName}}</h3>
+      </div>
+      <div class="col-lg-3 text-right">
+
+        <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn btn-gow btn-info"><i class="ficon ft-maximize"></i></button>
+        <button (click)="fullScreen()" *ngIf="fullscreed" class="btn btn-gow btn-info"><i class="ficon ft-minimize"></i></button>
+        <button (click)="openModal(createModal)" class="btn btn-light"><i class="la la-plus" aria-hidden="true"></i></button>
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="card-content collapse show">
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+        <div *ngIf="delete" class="alert alert-danger" role="alert">
+          {{delete}}
+        </div>
+          <div class="card-body card-dashboard table-responsive">
+              <table class="table table-striped table-bordered dom-jQuery-events">
+              <thead>
+                  <tr>
+                      <th>id</th>
+                      <th>Name</th>
+                      <th>Role</th>
+                      <th *ngIf="fullscreed">Facebook</th>
+                      <th *ngIf="fullscreed">Instgram</th>
+                      <th *ngIf="fullscreed">Twitter</th>
+                      <th>Image</th>
+
+                      <th>&nbsp;</th>
+                  </tr>
+              </thead>
+              <tbody>
+
+                  <tr *ngFor="let team of teams">
+                    <td>{{team.id}}</td>
+                    <td>{{team.en_name}}</td>
+                    <td>{{team.en_role}}</td>
+                    <td *ngIf="fullscreed">{{team.facebook}}</td>
+                    <td *ngIf="fullscreed">{{team.instagram}}</td>
+                    <td *ngIf="fullscreed">{{team.twitter}}</td>
+                    <td *ngIf="!fullscreed"><button type="button" [attr.data-toggle]="'modal'" [attr.data-target]="['#teamGallery'+team.id]" class="btn btn-primary text-white"><i class="la la-search fw-600" aria-hidden="true"></i></button></td>
+                    <td *ngIf="fullscreed"><img [src]="teamImage+team.image" width="60px" height="40px" alt=""></td>
+
+                      <td class="row justify-content-center no-gutters">
+                        <a routerLink="/feedbacks/{{team?.id}}" class="btn btn-round mr-1 btn-success"><i class="la la-edit"></i></a>
+                        <button (click)="onDelete(team.id , teamImage)" class="btn btn-round mr-1 btn-danger"><i class="la la-trash"></i></button>
+                      </td>
+                  </tr>
+
+
+
+              </tbody>
+
+              </table>
+
+          </div>
+
+    </div>
+  </div>
+  <!-- Modal -->
+
+  <div *ngFor="let teamGallery of teams" class="modal fade" id="teamGallery{{teamGallery.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title mb-0" id="exampleModalLabel">{{teamGallery.en_name}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <img [src]="teamImage+teamGallery.image" class="w-100" alt="">      </div>
+
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #createModal>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Create Team</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="createTeam" (ngSubmit)="onCreate()">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+
+            <div class="form-group">
+              <label for="en_name">En name</label>
+              <input id="en_name" class="form-control" type="text" name="en_name" formControlName="en_name">
+            </div>
+            <div *ngIf="createTeam.controls['en_name'].touched && createTeam.controls['en_name'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
+              <p class="mb-0" *ngIf="createTeam.controls['en_name'].errors['required']">English name is required</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="ar_name">Ar name</label>
+              <input id="ar_name" class="form-control" type="text" name="ar_name" formControlName="ar_name">
+            </div>
+            <div *ngIf="createTeam.controls['ar_name'].touched && createTeam.controls['ar_name'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
+              <p class="mb-0" *ngIf="createTeam.controls['ar_name'].errors['required']">Arabic name is required</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="en_role">En role</label>
+              <input id="en_role" class="form-control" type="text" name="en_role" formControlName="en_role">
+            </div>
+            <div *ngIf="createTeam.controls['en_role'].touched && createTeam.controls['en_role'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
+              <p class="mb-0" *ngIf="createTeam.controls['en_role'].errors['required']">English role is required</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="ar_role">Ar role</label>
+              <input id="ar_role" class="form-control" type="text" name="ar_role" formControlName="ar_role">
+            </div>
+            <div *ngIf="createTeam.controls['ar_role'].touched && createTeam.controls['ar_role'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
+              <p class="mb-0" *ngIf="createTeam.controls['ar_role'].errors['required']">Arabic role is required</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="facebook">Facebook</label>
+              <input id="facebook" class="form-control" type="text" name="facebook" formControlName="facebook">
+            </div>
+            <div *ngIf="createTeam.controls['facebook'].touched && createTeam.controls['facebook'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
+              <p class="mb-0" *ngIf="createTeam.controls['facebook'].errors['required']">Facebook is required</p>
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="instagram">Instgram</label>
+              <input id="instagram" class="form-control" type="text" name="instagram" formControlName="instagram">
+            </div>
+            <div *ngIf="createTeam.controls['instagram'].touched && createTeam.controls['instagram'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
+              <p class="mb-0" *ngIf="createTeam.controls['instagram'].errors['required']">Instgram is required</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="twitter">Twitter</label>
+              <input id="twitter" class="form-control" type="text" name="twitter" formControlName="twitter">
+            </div>
+            <div *ngIf="createTeam.controls['twitter'].touched && createTeam.controls['twitter'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
+              <p class="mb-0" *ngIf="createTeam.controls['twitter'].errors['required']">Twitter is required</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input id="image" (change)="image($event)" class="form-control" type="file" name="image">
+            </div>
+            <div *ngIf="createTeam.controls['image'].touched && createTeam.controls['image'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
+              <p class="mb-0" *ngIf="createTeam.controls['image'].errors['required']">Image is required</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="createTeam.invalid">Create Team</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

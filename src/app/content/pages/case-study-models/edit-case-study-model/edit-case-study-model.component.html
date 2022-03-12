@@ -1,0 +1,69 @@
+<div class="card">
+
+  <div class="card-content collapse show">
+    <div
+    class="card-header bg-primary bg-darken-2 text-center align-items-center card-title-bold text-capitalize row no-gutters"
+  >
+    <div class="col-lg-9">
+      <h3 class="mb-0 text-left">Edit case study</h3>
+    </div>
+    <div class="col-lg-3 text-right">
+      <a
+        routerLink="/case-study-model-gallery/{{caseStudyModel.id}}"
+        class="btn btn-light"
+        title="View case study gallery"
+      >
+        <i class="la la-plus" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+      <div class="card-body">
+        <div *ngIf="error" class="alert alert-danger" role="alert">
+          {{error}}
+        </div>
+        <div *ngIf="success" class="alert alert-success" role="alert">
+          {{success}}
+        </div>
+        <form [formGroup]="updateCaseStudyModel" (ngSubmit)="onUpdate(updateCaseStudyModel)">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+
+                <div class="form-group">
+                  <label for="en_name">En title</label>
+                  <input id="en_name" class="form-control" type="text" name="en_title" formControlName="en_title" [(ngModel)]="caseStudyModel.en_title">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="ar_title">Ar title</label>
+                  <input id="ar_title" class="form-control" type="text" name="ar_title" formControlName="ar_title" [(ngModel)]="caseStudyModel.ar_title">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="en_text">En text</label>
+                  <textarea id="en_text" class="form-control" type="text" name="en_text" formControlName="en_text" [(ngModel)]="caseStudyModel.en_text"></textarea>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="ar_text">Ar text</label>
+                  <textarea id="ar_text" class="form-control" type="text" name="ar_text" formControlName="ar_text" [(ngModel)]="caseStudyModel.ar_text"></textarea>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+            <button type="submit" class="btn btn-primary" [disabled]="updateCaseStudyModel.invalid">Save changes</button>
+        </form>
+      </div>
+    </div>
+</div>

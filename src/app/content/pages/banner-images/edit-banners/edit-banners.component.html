@@ -1,0 +1,128 @@
+<div class="card card-content collapse show">
+  <div class="card-body">
+    <div *ngIf="success" class="alert alert-success" role="alert">
+      {{success}}
+    </div>
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      {{error}}
+    </div>
+    <form
+      class="form-horizontal"
+      (ngSubmit)="onSubmit()"
+      [formGroup]="bannerImageEdit"
+    >
+      <div class="row">
+
+
+
+
+        <div class="col-md-6">
+          <div class="form-group bmd-form-group is-filled">
+            <div class="row align-items-end">
+              <div class="col-md-9">
+                <label class="bmd-label-floating">Services banner</label>
+                <input
+                (change)="services_banner_image($event)"
+                  type="file"
+                  class="form-control"
+                  id="services_banner_image"
+
+                />
+
+              </div>
+              <div class="col-md-3">
+                <img [src]="imageUrl+bannerImageData.services_banner_image" class="w-100" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group bmd-form-group is-filled">
+            <div class="row align-items-end">
+              <div class="col-md-9">
+                <label class="bmd-label-floating">Services details banner</label>
+                <input
+                (change)="services_detail_banner_image($event)"
+                  type="file"
+                  class="form-control"
+                  id="services_detail_banner_image"
+
+                />
+
+              </div>
+              <div class="col-md-3">
+                <img [src]="imageUrl+bannerImageData.services_detail_banner_image" class="w-100" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group bmd-form-group is-filled">
+            <div class="row align-items-end">
+              <div class="col-md-9">
+                <label class="bmd-label-floating">Say hello banner</label>
+                <input
+                (change)="say_hello_banner_image($event)"
+                  type="file"
+                  class="form-control"
+                  id="say_hello_banner_image"
+
+                />
+
+              </div>
+              <div class="col-md-3">
+                <img [src]="imageUrl+bannerImageData.say_hello_banner_image" class="w-100" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group bmd-form-group is-filled">
+            <div class="row align-items-end">
+              <div class="col-md-9">
+                <label class="bmd-label-floating">Feedback banner</label>
+                <input
+                (change)="feedback_banner_image($event)"
+                  type="file"
+                  class="form-control"
+                  id="feedback_banner_image"
+
+                />
+
+              </div>
+              <div class="col-md-3">
+                <img [src]="imageUrl+bannerImageData.feedback_banner_image" class="w-100" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group bmd-form-group is-filled">
+            <div class="row align-items-end">
+              <div class="col-md-9">
+                <label class="bmd-label-floating">Contact banner</label>
+                <input
+                (change)="contact_banner_image($event)"
+                  type="file"
+                  class="form-control"
+                  id="contact_banner_image"
+
+                />
+
+              </div>
+              <div class="col-md-3">
+                <img [src]="imageUrl+bannerImageData.contact_banner_image" class="w-100" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row no-gutters justify-content-end">
+        <button class="btn btn-primary" [disabled]="bannerImageEdit.invalid">
+          Edit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

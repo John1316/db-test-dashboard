@@ -1,0 +1,66 @@
+<div class="card-content collapse show">
+    <div class="card-body">
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      <div *ngIf="success" class="alert alert-success" role="alert">
+        {{success}}
+      </div>
+      <form [formGroup]="updateClients" (ngSubmit)="onUpdate()">
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="en_title">En title</label>
+                <input id="en_title" class="form-control" type="text" name="en_title" formControlName="en_title" [(ngModel)]="client.en_title">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ar_title">Ar title</label>
+                <input id="ar_title" class="form-control" type="text" name="ar_title" formControlName="ar_title" [(ngModel)]="client.ar_title">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="en_text">En text</label>
+                <input id="en_text" class="form-control" type="text" name="en_text" formControlName="en_text" [(ngModel)]="client.en_text">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ar_text">Ar text</label>
+                <input id="ar_text" class="form-control" type="text" name="ar_text" formControlName="ar_text" [(ngModel)]="client.ar_text">
+              </div>
+            </div>
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="type">Type</label>
+                <select id="type" class="form-control" name="type" formControlName="type" [(ngModel)]="client.type" >
+                  <option class="d-none" [selected]="client.type">{{client.type}}</option>
+                  <option value="happy">Happy</option>
+                  <option value="case">Case</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row align-items-center">
+                <div class="col-lg-10">
+                  <div class="form-group">
+                    <label for="icon">Logo</label>
+                    <input id="icon" (change)="logo($event)" class="form-control" type="file" name="icon" >
+                  </div>
+
+                </div>
+                <div class="col-lg-2">
+                  <img height="50px" [src]="clientImage+client.logo" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" [disabled]="updateClients.invalid">Save changes</button>
+      </form>
+    </div>
+  </div>

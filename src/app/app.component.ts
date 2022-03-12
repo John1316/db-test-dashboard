@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dashboard-digitalbond';
+  isLogined:boolean = false;
+  constructor(
+    private _AuthService:AuthService
+  ){
+    _AuthService.currentUserData.subscribe(()=>{
+      if (_AuthService.currentUserData.getValue() == null) {
+        this.isLogined = false;
+
+        // console.log(this._AuthService);
+        // this.firstName = this._AuthService.currentUserData.value.first_name;
+        // console.log(this.firstName);
+      }
+      else{
+        this.isLogined = true;
+      }
+    })
+  }
+
 }

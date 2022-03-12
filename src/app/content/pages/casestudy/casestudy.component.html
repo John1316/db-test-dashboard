@@ -1,0 +1,196 @@
+<div class="card" [ngClass]="{'card-fullscreen': fullscreed}">
+  <div class="card-content collapse show">
+    <div
+      class="card-header bg-primary bg-darken-2 text-center align-items-center card-title-bold text-capitalize row no-gutters"
+    >
+      <div class="col-lg-9">
+        <h3 class="mb-0 text-left">{{ pageName }}</h3>
+      </div>
+      <div class="col-lg-3 text-right">
+
+        <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn btn-glow btn-info"><i class="ficon ft-maximize"></i></button>
+        <button (click)="fullScreen()" *ngIf="fullscreed" class="btn btn-glow btn-info"><i class="ficon ft-minimize"></i></button>
+        <button (click)="openModal(createModal)" class="btn btn-light"><i class="la la-plus" aria-hidden="true"></i></button>
+
+      </div>
+    </div>
+    <div class="card-body">
+      <div *ngIf="success" class="alert alert-success" role="alert">
+        {{ success }}
+      </div>
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+      <div *ngIf="delete" class="alert alert-danger" role="alert">
+        {{ delete }}
+      </div>
+
+      <div class="card-content collapse show">
+        <div class="card-body card-dashboard table-responsive">
+          <table class="table table-striped table-bordered dom-jQuery-events">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Title</th>
+                <th *ngIf="fullscreed">Text</th>
+                <th>Image</th>
+
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let CaseStudy of caseStudies">
+                <td>{{ CaseStudy.id }}</td>
+                <td>{{ CaseStudy.en_title }}</td>
+                <td *ngIf="!fullscreed"><button type="button" [attr.data-toggle]="'modal'" [attr.data-target]="['#caseStudiesGallery'+CaseStudy.id]" class="btn btn-primary text-white"><i class="la la-search fw-600" aria-hidden="true"></i></button></td>
+
+                <td *ngIf="fullscreed">{{CaseStudy.en_text}}</td>
+                <td *ngIf="fullscreed">
+                  <img
+                    [src]="caseStudyImage + CaseStudy.banner_image"
+                    width="100px"
+                    alt=""
+                  />
+                </td>
+
+                <td class="row justify-content-center no-gutters">
+                  <a
+                    routerLink="/case-studies/{{ CaseStudy?.id }}"
+                    class="btn btn-round mr-1 btn-success"
+                    ><i class="la la-edit"></i
+                  ></a>
+                  <button
+                    (click)="onDelete(CaseStudy.id, caseStudyImage)"
+                    class="btn btn-round mr-1 btn-danger"
+                  >
+                    <i class="la la-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+
+  <ng-template #createModal>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Create casestudy</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="createCaseStudy" (ngSubmit)="onCreate()">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="en_title">En title</label>
+                <input
+                  id="en_title"
+                  class="form-control"
+                  type="text"
+                  name="en_title"
+                  formControlName="en_title"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ar_title">Ar title</label>
+                <input
+                  id="ar_title"
+                  class="form-control"
+                  type="text"
+                  name="ar_title"
+                  formControlName="ar_title"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="en_text">En text</label>
+                <input
+                  id="en_text"
+                  class="form-control"
+                  type="text"
+                  name="en_text"
+                  formControlName="en_text"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ar_text">Ar text</label>
+                <input
+                  id="ar_text"
+                  class="form-control"
+                  type="text"
+                  name="ar_text"
+                  formControlName="ar_text"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="image">Image</label>
+                <input
+                  id="image"
+                  (change)="image($event)"
+                  class="form-control"
+                  type="file"
+                  name="image"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="banner_image">Banner image</label>
+                <input
+                  id="banner_image"
+                  (change)="banner_image($event)"
+                  class="form-control"
+                  type="file"
+                  name="banner_image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="createCaseStudy.invalid"
+          >
+            Save changes
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+</div>
+<div *ngFor="let caseStudiesGallery of caseStudies" class="modal fade" id="caseStudiesGallery{{caseStudiesGallery.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title mb-0" id="exampleModalLabel">{{caseStudiesGallery.en_name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <img [src]="caseStudyImage+caseStudiesGallery.image" class="w-100" alt="">      </div>
+
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>

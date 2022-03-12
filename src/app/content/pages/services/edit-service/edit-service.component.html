@@ -1,0 +1,61 @@
+<div class="card">
+  <div class="card-content collapse show">
+    <div class="card-body">
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      <div *ngIf="success" class="alert alert-success" role="alert">
+        {{success}}
+      </div>
+      <form [formGroup]="updateService" (ngSubmit)="onUpdate()">
+          <div class="row">
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="en_title">En title</label>
+                <input id="en_title" class="form-control" type="text" name="en_title" formControlName="en_title" [(ngModel)]="service.en_title">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ar_title">Ar title</label>
+                <input id="ar_title" class="form-control" type="text" name="ar_title" formControlName="ar_title" [(ngModel)]="service.ar_title">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="en_text">En text</label>
+                <input id="en_text" class="form-control" type="text" name="en_text" formControlName="en_text" [(ngModel)]="service.en_text">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ar_text">Ar text</label>
+                <input id="ar_text" class="form-control" type="text" name="ar_text" formControlName="ar_text" [(ngModel)]="service.ar_text">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="icon">icon</label>
+                <input id="icon" (change)="icon($event)" class="form-control" type="file" name="icon">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="image">image</label>
+                <input id="image" (change)="image($event)" class="form-control" type="file" name="image" >
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="banner_image">banner_image</label>
+                <input id="banner_image" (change)="banner_image($event)"  class="form-control" type="file" name="banner_image">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="updateService.invalid">Save changes</button>
+      </form>
+    </div>
+  </div>
+</div>

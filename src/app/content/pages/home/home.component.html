@@ -1,0 +1,85 @@
+<div class="" *ngIf="loading">
+  <app-loading></app-loading>
+</div>
+<div class="card" [ngClass]="{'card-fullscreen': fullscreed}">
+
+  <div class="card-content collapse show">
+    <div class="card-header bg-primary bg-darken-2 text-center align-items-center card-title-bold text-capitalize row no-gutters">
+      <div class="col-lg-9">
+        <h3 class="mb-0 text-left">{{ 'Home page' }}</h3>
+      </div>
+      <div class="col-lg-3 text-right">
+        <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn btn-glow btn-info"><i class="ficon ft-maximize"></i></button>
+        <button (click)="fullScreen()" *ngIf="fullscreed" class="btn btn-glow btn-info"><i class="ficon ft-minimize"></i></button>
+
+      </div>
+    </div>
+    <div class="card-body">
+
+      <div class="card-content collapse show">
+          <div class="card-body card-dashboard table-responsive">
+
+              <table class="table table-striped table-bordered dom-jQuery-events">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Home title</th>
+                        <th>First title</th>
+                        <th>Seond title</th>
+                        <th>Third title</th>
+                        <th>Fourth title</th>
+
+
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>{{home?.en_about_home_title}}</td>
+                        <td>{{home?.en_first_icon_title}}</td>
+                        <td>{{home?.en_second_icon_title}}</td>
+                        <td>{{home?.en_third_icon_title}}</td>
+                        <td>{{home?.en_fourth_icon_title}}</td>
+
+                        <td class="row justify-content-center no-gutters">
+                            <a routerLink="/home-page/edit/{{home?.id}}" class="btn btn-round mr-1 btn-success"><i class="la la-edit"></i></a>
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+              </table>
+              <table *ngIf="fullscreed" class="table table-striped table-bordered dom-jQuery-events">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>First icon</th>
+                        <th>Seond icon</th>
+                        <th>Third icon</th>
+                        <th>Fourth icon</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td><img [src]="imageUrl+home.first_icon" class="w-100" alt=""></td>
+                        <td><img [src]="imageUrl+home.second_icon" class="w-100" alt=""></td>
+                        <td><img [src]="imageUrl+home.third_icon" class="w-100" alt=""></td>
+                        <td><img [src]="imageUrl+home.fourth_icon" class="w-100" alt=""></td>
+
+                    </tr>
+
+
+
+                </tbody>
+              </table>
+
+          </div>
+
+    </div>
+  </div>
+</div>
