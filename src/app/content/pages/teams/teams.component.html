@@ -115,45 +115,35 @@
               <label for="en_name">En name</label>
               <input id="en_name" class="form-control" type="text" name="en_name" formControlName="en_name">
             </div>
-            <div *ngIf="createTeam.controls['en_name'].touched && createTeam.controls['en_name'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
-              <p class="mb-0" *ngIf="createTeam.controls['en_name'].errors['required']">English name is required</p>
-            </div>
+
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="ar_name">Ar name</label>
               <input id="ar_name" class="form-control" type="text" name="ar_name" formControlName="ar_name">
             </div>
-            <div *ngIf="createTeam.controls['ar_name'].touched && createTeam.controls['ar_name'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
-              <p class="mb-0" *ngIf="createTeam.controls['ar_name'].errors['required']">Arabic name is required</p>
-            </div>
+
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="en_role">En role</label>
               <input id="en_role" class="form-control" type="text" name="en_role" formControlName="en_role">
             </div>
-            <div *ngIf="createTeam.controls['en_role'].touched && createTeam.controls['en_role'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
-              <p class="mb-0" *ngIf="createTeam.controls['en_role'].errors['required']">English role is required</p>
-            </div>
+
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="ar_role">Ar role</label>
               <input id="ar_role" class="form-control" type="text" name="ar_role" formControlName="ar_role">
             </div>
-            <div *ngIf="createTeam.controls['ar_role'].touched && createTeam.controls['ar_role'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
-              <p class="mb-0" *ngIf="createTeam.controls['ar_role'].errors['required']">Arabic role is required</p>
-            </div>
+
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="facebook">Facebook</label>
               <input id="facebook" class="form-control" type="text" name="facebook" formControlName="facebook">
             </div>
-            <div *ngIf="createTeam.controls['facebook'].touched && createTeam.controls['facebook'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
-              <p class="mb-0" *ngIf="createTeam.controls['facebook'].errors['required']">Facebook is required</p>
-            </div>
+
 
           </div>
 
@@ -162,27 +152,21 @@
               <label for="instagram">Instgram</label>
               <input id="instagram" class="form-control" type="text" name="instagram" formControlName="instagram">
             </div>
-            <div *ngIf="createTeam.controls['instagram'].touched && createTeam.controls['instagram'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
-              <p class="mb-0" *ngIf="createTeam.controls['instagram'].errors['required']">Instgram is required</p>
-            </div>
+
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="twitter">Twitter</label>
               <input id="twitter" class="form-control" type="text" name="twitter" formControlName="twitter">
             </div>
-            <div *ngIf="createTeam.controls['twitter'].touched && createTeam.controls['twitter'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
-              <p class="mb-0" *ngIf="createTeam.controls['twitter'].errors['required']">Twitter is required</p>
-            </div>
+
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="image">Image</label>
               <input id="image" (change)="image($event)" class="form-control" type="file" name="image">
             </div>
-            <div *ngIf="createTeam.controls['image'].touched && createTeam.controls['image'].errors != null" class="alert mt-2 alert-danger text-left" role="alert">
-              <p class="mb-0" *ngIf="createTeam.controls['image'].errors['required']">Image is required</p>
-            </div>
+
           </div>
 
 

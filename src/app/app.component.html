@@ -1,8 +1,8 @@
 
 <app-navbar></app-navbar>
 <app-sidebar *ngIf="isLogined"></app-sidebar>
-<div class="app-content content" [ngClass]="{'ml-0': !isLogined}">
-  <div class="content-wrapper">
+<div class="app-content content" [ngClass]="{'ml-0 d-flex justify-content-center align-items-center': !isLogined}">
+  <div class=" content-wrapper">
       <div class="content-body">
         <router-outlet></router-outlet>
       </div>

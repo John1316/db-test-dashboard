@@ -16,7 +16,9 @@ export class TeamService {
   }
 
 
-
+  getTeamDetails(id:number): Observable<any>{
+    return this._HttpClient.get(`${environment.apiUrl}teams_update_data/${id}`)
+  }
 
 
   CreateTeam(

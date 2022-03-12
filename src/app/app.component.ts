@@ -22,8 +22,10 @@ export class AppComponent {
       }
       else{
         this.isLogined = true;
+
       }
     })
+    
   }
 
 }
