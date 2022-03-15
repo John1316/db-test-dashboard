@@ -11,7 +11,10 @@ export class FeedbacksService {
   constructor(
     private _HttpClient:HttpClient
   ) { }
+  getClientMessages():Observable<any>{
+    return this._HttpClient.get(`${environment.apiUrl}contacts_index`)
 
+  }
   getFeedbacks():Observable<any>{
     return this._HttpClient.get(`${environment.apiUrl}feedbacks_index`)
   }

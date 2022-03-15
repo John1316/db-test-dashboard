@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FeedbacksService } from 'src/app/services/feedbacks.service';
 
@@ -25,7 +26,8 @@ export class FeedbacksComponent implements OnInit {
   }
   constructor(
     private _FeedbacksService:FeedbacksService,
-        private modalService:BsModalService
+        private modalService:BsModalService,
+        private _Title:Title
 
   ) { }
     openModal(template:any){
@@ -70,19 +72,21 @@ export class FeedbacksComponent implements OnInit {
   }
 
   onDelete(id:number , data:any){
-    this.loadingAction = true
-    this._FeedbacksService.deleteFeedback(id,data ).subscribe(
-      (response) => {
-        if (response.success) {
-          this.delete = response.success
-          this.error = ''
-          this.success = ''
-          this.showFeedbacks();
-          this.loadingAction = false
+    if(confirm(`Are you sure to delete feedback with id ${id}`)) {
+      this.loadingAction = true
+      this._FeedbacksService.deleteFeedback(id,data ).subscribe(
+        (response) => {
+          if (response.success) {
+            this.delete = response.success
+            this.error = ''
+            this.success = ''
+            this.showFeedbacks();
+            this.loadingAction = false
 
+          }
         }
-      }
-    )
+      )
+    }
   }
   onCreate(){
     this.loadingAction = true
@@ -114,5 +118,7 @@ export class FeedbacksComponent implements OnInit {
   }
   ngOnInit(): void {
     this.showFeedbacks()
+    this._Title.setTitle(`Digital Bond | Feedbacks`)
+
   }
 }

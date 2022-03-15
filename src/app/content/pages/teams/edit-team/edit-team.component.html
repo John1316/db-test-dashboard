@@ -1,0 +1,82 @@
+<div class="card">
+  <div class="card-content collapse show">
+    <div class="card-body">
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        {{error}}
+      </div>
+      <div *ngIf="success" class="alert alert-success" role="alert">
+        {{success}}
+      </div>
+      <form [formGroup]="updateTeam" (ngSubmit)="onUpdate()">
+          <div class="row justify-content-end">
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="en_name">En name</label>
+                <input id="en_name" class="form-control" type="text" name="en_name" formControlName="en_name" [(ngModel)]="team.en_name">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ar_name">Ar name</label>
+                <input id="ar_name" class="form-control" type="text" name="ar_name" formControlName="ar_name" [(ngModel)]="team.ar_name">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="en_role">En role</label>
+                <input id="en_role" class="form-control" type="text" name="en_role" formControlName="en_role" [(ngModel)]="team.en_role">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ar_role">Ar role</label>
+                <input id="ar_role" class="form-control" type="text" name="ar_role" formControlName="ar_role" [(ngModel)]="team.ar_role">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="facebook">Facebook</label>
+                <input id="facebook" class="form-control" type="text" name="facebook" formControlName="facebook" [(ngModel)]="team.facebook">
+              </div>
+
+
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="instagram">Instgram</label>
+                <input id="instagram" class="form-control" type="text" name="instagram" formControlName="instagram" [(ngModel)]="team.instagram">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="twitter">Twitter</label>
+                <input id="twitter" class="form-control" type="text" name="twitter" formControlName="twitter" [(ngModel)]="team.twitter">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="row align-items-center">
+                <div class="col-lg-10">
+                  <div class="form-group">
+                    <label for="image">Image</label>
+                    <input id="image" (change)="image($event)" class="form-control" type="file" name="image" >
+                  </div>
+
+                </div>
+                <div class="col-lg-2">
+                  <img class="w-100" [src]="teamImage+team.image" alt="">
+                </div>
+              </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary text-right" [disabled]="updateTeam.invalid">Update team</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

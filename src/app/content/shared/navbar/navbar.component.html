@@ -5,13 +5,13 @@
   <div class="navbar-wrapper">
     <div class="navbar-header">
       <ul class="nav navbar-nav flex-row d-flex align-items-center">
-        <li class="nav-item mobile-menu d-lg-none mr-auto">
-          <a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"
+        <li class="nav-item mobile-menu d-lg-none mr-auto" (click)="openMenu()">
+          <a class="nav-link nav-menu-main menu-toggle hidden-xs"
             ><i class="ft-menu font-large-1"></i
           ></a>
         </li>
         <li class="nav-item mr-auto">
-          <a class="navbar-brand" routerLink="/home"
+          <a class="navbar-brand" href="https://digitalbondmena.com/db-porfolio" target="_blank"
             ><img
               class="brand-logo"
               alt="Digital Bond"
@@ -20,14 +20,7 @@
             <h3 class="brand-text">Digital Bond</h3></a
           >
         </li>
-        <li class="nav-item d-none d-lg-block nav-toggle">
-          <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"
-            ><i
-              class="toggle-icon ft-toggle-right font-medium-3 white"
-              data-ticon="ft-toggle-right"
-            ></i
-          ></a>
-        </li>
+
         <li class="nav-item d-lg-none">
           <a
             class="nav-link open-navbar-container"
@@ -41,6 +34,22 @@
     <div class="navbar-container content">
       <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="nav navbar-nav mr-auto float-left">
+          <li class="nav-item  d-lg-block nav-toggle" *ngIf="!isCollapsed" (click)="collpaseSidebar()">
+            <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"
+              ><i
+                class="toggle-icon ft-toggle-left font-medium-3"
+                data-ticon="ft-toggle-left"
+              ></i
+            ></a>
+          </li>
+          <li class="nav-item  d-lg-block nav-toggle" *ngIf="isCollapsed" (click)="openSidebar()">
+            <a class="nav-link modern-nav-toggle pr-0" data-toggle="expand"
+              ><i
+                class="toggle-icon ft-toggle-right font-medium-3"
+                data-ticon="ft-toggle-right"
+              ></i
+            ></a>
+          </li>
           <li class="nav-item d-none d-lg-block">
             <!-- <a class="nav-link nav-link-expand" (click)="GoFullScreen()"
               ><i class="ficon ft-maximize"></i
@@ -54,24 +63,26 @@
           </li>
         </ul>
         <ul class="nav navbar-nav float-right">
+          <li *ngIf="!isLogined" class="dropdown dropdown-user nav-item">
+            <p class="mb-0">You ar not logined</p>
+          </li>
           <li *ngIf="isLogined" class="dropdown dropdown-user nav-item">
             <a
               class="dropdown-toggle nav-link dropdown-user-link"
-              href="#"
+
               data-toggle="dropdown"
-              ><span class="mr-1 user-name text-bold-700">John Doe</span
+              ><span  class="mr-1 user-name text-bold-700">{{username}}</span
               ><span class="avatar avatar-online"
                 ><img
-                  src="assets/app-assets/images/portrait/small/avatar-s-19.png"
+                  src="assets/images/avatar.png"
                   alt="avatar" /><i></i></span
             ></a>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a (click)="signOut()" class="dropdown-item"
+            <div class="dropdown-menu dropdown-menu-user dropdown-menu-right">
+              <a  (click)="signOut()" class="dropdown-item"
                 ><i class="ft-power"></i> Logout</a
               >
             </div>
           </li>
-          <li *ngIf="!isLogined">Your are not logined</li>
         </ul>
       </div>
     </div>

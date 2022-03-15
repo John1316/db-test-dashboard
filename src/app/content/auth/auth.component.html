@@ -1,0 +1,48 @@
+<div class="" *ngIf="actionLoader">
+  <app-loader-action></app-loader-action>
+</div>
+<section class="row navbar-flexbox-container">
+  <div class="col-12 d-flex align-items-center justify-content-center">
+    <div class="col-lg-6 col-md-8 col-10 box-shadow-2 p-0">
+      <div class="card border-grey border-lighten-3 m-0">
+        <div class="card-header border-0 pb-0">
+          <div class="card-title text-center">
+            <i class="las la-sign-in-alt" style="font-size: 40px;" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="card-content">
+
+          <div class="card-body">
+            <form class="form-horizontal"[formGroup]="auth" (ngSubmit)="submit(auth)">
+              <fieldset class="form-group position-relative has-icon-left">
+                <input type="text" class="form-control" formControlName="email" id="user-name" placeholder="Your Username" required="">
+                <div class="form-control-position">
+                  <i class="la la-user"></i>
+                </div>
+              </fieldset>
+              <div *ngIf="auth.controls['email'].touched && auth.controls['email'].errors != null" id="email" class="alert mt-2 alert-danger" role="alert">
+                <p class="mb-0" *ngIf="auth.controls['email'].errors['required']">Email is required</p>
+                <p class="mb-0" *ngIf="auth.controls['email'].errors['email']">Email must be valid</p>
+              </div>
+
+              <fieldset class="form-group position-relative has-icon-left">
+                <input type="password" class="form-control" formControlName="password" id="user-password" placeholder="Enter Password" required="">
+                <div class="form-control-position">
+                  <i class="la la-key"></i>
+                </div>
+              </fieldset>
+              <div *ngIf="auth.controls['password'].touched && auth.controls['password'].errors != null" id="email" class="alert mt-2 alert-danger" role="alert">
+                <p class="mb-0" *ngIf="auth.controls['password'].errors['required']">Password is required</p>
+              </div>
+              <div *ngIf="error" class="alert alert-danger" role="alert">
+                <strong>{{error}}</strong>
+              </div>
+              <button type="submit" [disabled]="!auth.valid" class="btn btn-primary btn-lg btn-block"><i class="ft-unlock"></i> Login</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

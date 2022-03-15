@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { TeamService } from 'src/app/services/team.service';
 
@@ -26,7 +27,8 @@ export class TeamsComponent implements OnInit {
   }
   constructor(
     private _TeamService:TeamService,
-        private modalService:BsModalService
+        private modalService:BsModalService,
+        private _Title:Title
 
   ) { }
     openModal(template:any){
@@ -64,19 +66,21 @@ export class TeamsComponent implements OnInit {
   }
 
   onDelete(id:number , data:any){
-    this.loadingAction = true
-    this._TeamService.deleteTeam(id,data ).subscribe(
-      (response) => {
-        if (response.success) {
-          this.delete = response.success
-          this.error = ''
-          this.success = ''
-          this.showTeams();
-          this.loadingAction = false
+    if(confirm(`Are you sure to delete team with id ${id}`)) {
+      this.loadingAction = true
+      this._TeamService.deleteTeam(id,data ).subscribe(
+        (response) => {
+          if (response.success) {
+            this.delete = response.success
+            this.error = ''
+            this.success = ''
+            this.showTeams();
+            this.loadingAction = false
 
+          }
         }
-      }
-    )
+      )
+    }
   }
   onCreate(){
     this.loadingAction = true
@@ -108,6 +112,7 @@ export class TeamsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.showTeams()
+    this._Title.setTitle(`Digital Bond | Teams`)
   }
 
 }

@@ -9,14 +9,14 @@
 <div class="card"  [ngClass]="{'card-fullscreen': fullscreed}">
   <div class="card-content collapse show">
     <div class="card-header bg-primary bg-darken-2 text-center align-items-center card-title-bold text-capitalize row no-gutters">
-      <div class="col-lg-9">
+      <div class="col-9">
 
         <h3 class="mb-0 text-left">{{pageName}}</h3>
       </div>
-      <div class="col-lg-3 text-right">
+      <div class="col-3 text-right">
 
-        <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn btn-gow btn-info"><i class="ficon ft-maximize"></i></button>
-        <button (click)="fullScreen()" *ngIf="fullscreed" class="btn btn-gow btn-info"><i class="ficon ft-minimize"></i></button>
+        <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn btn-gow btn-light mx-2"><i class="ficon ft-maximize"></i></button>
+        <button (click)="fullScreen()" *ngIf="fullscreed" class="btn btn-gow btn-light"><i class="ficon ft-minimize"></i></button>
         <button (click)="openModal(createModal)" class="btn btn-light"><i class="la la-plus" aria-hidden="true"></i></button>
       </div>
     </div>
@@ -44,7 +44,7 @@
                       <th *ngIf="fullscreed">Twitter</th>
                       <th>Image</th>
 
-                      <th>&nbsp;</th>
+                      <th class="action_minwidth">Action</th>
                   </tr>
               </thead>
               <tbody>

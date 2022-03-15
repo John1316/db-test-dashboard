@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, Validators , FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ServiceService } from 'src/app/services/service.service';
 
@@ -18,20 +19,23 @@ export class ServicesComponent implements OnInit {
   fullscreed: boolean = false;
   loading: boolean = false;
   loadingAction: boolean = false;
-
+  page!:number;
   fullScreen(){
     this.fullscreed = !this.fullscreed
   }
   serviceImage ='https://digitalbondmena.com/services/'
   constructor(
     private _ServiceService:ServiceService,
-    private modalService:BsModalService
+    private modalService:BsModalService,
+    private _Title:Title
   ) { }
   openModal(template: any) {
     this.modalRef = this.modalService.show(template);
   }
   ngOnInit(): void {
     this.showServices()
+    this._Title.setTitle(`Digital Bond | Services`)
+
   }
 
   createService = new FormGroup({
@@ -75,8 +79,9 @@ export class ServicesComponent implements OnInit {
     )
   }
   onDelete(id:number , data:any){
-    this.loadingAction= true
-    this._ServiceService.deleteService(id,data ).subscribe(
+    if(confirm(`Are you sure to delete service with id ${id}`)) {
+      this.loadingAction= true
+      this._ServiceService.deleteService(id,data ).subscribe(
       (response) => {
         if (response.success) {
           this.delete = response.success
@@ -87,7 +92,8 @@ export class ServicesComponent implements OnInit {
           this.showServices();
         }
       }
-    )
+      )
+    }
   }
   onCreate(){
     this.loadingAction= true

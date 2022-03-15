@@ -17,6 +17,8 @@ export class CasestudyComponent implements OnInit {
   modalRef!:BsModalRef;
   caseStudyImage ='https://digitalbondmena.com/case-study/';
   fullscreed: boolean = false;
+  loading: boolean = false;
+  loadingAction: boolean = false;
   fullScreen(){
     this.fullscreed = !this.fullscreed
   }
@@ -57,26 +59,34 @@ export class CasestudyComponent implements OnInit {
     this.modalRef = this._BsModalService.show(template);
   }
   showCaseStudy(){
+    this.loading = true
     this._CasestudyService.getCaseStudy().subscribe(
       (response) => {
         this.caseStudies = response.rows
+        this.loading = false
+
       }
     )
   }
   onDelete(id:number , data:any){
+    this.loadingAction = true;
+
     this._CasestudyService.deleteClient(id,data ).subscribe(
       (response) => {
         if (response.success) {
-          this.delete = response.success
-          this.error = ''
-          this.success = ''
-          this.showCaseStudy()
+          this.delete = response.success;
+          this.error = '';
+          this.success = '';
+          this.loadingAction = false;
+
+          this.showCaseStudy();
 
         }
       }
     )
   }
   onCreate(){
+    this.loadingAction = true;
     this._CasestudyService.createCaseStudy(
       this.createCaseStudy.value.en_title,
       this.createCaseStudy.value.ar_title,
@@ -91,7 +101,9 @@ export class CasestudyComponent implements OnInit {
           this.error = ''
           this.delete = ''
           this.showCaseStudy();
-          this.modalRef.hide()
+          this.modalRef.hide();
+          this.loadingAction = false;
+
           this.createCaseStudy.reset();
         }else{
 

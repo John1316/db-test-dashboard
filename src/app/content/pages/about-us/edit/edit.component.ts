@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { AboutService } from 'src/app/services/about.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit',
@@ -17,7 +18,8 @@ export class EditComponent implements OnInit {
 
   constructor(
     private _AboutService:AboutService,
-    private _FormBuilder:FormBuilder
+    private _FormBuilder:FormBuilder,
+    private _Title:Title
   ) {
     this.aboutusEdit = this._FormBuilder.group({
       en_about_section_title: [''],
@@ -47,6 +49,8 @@ export class EditComponent implements OnInit {
   }
   ngOnInit(): void {
     this.aboutUsFormData()
+    this._Title.setTitle(`Digital bond | About us edit`)
+
   }
   onChangeFile1(event:any){
     const file = event.target.files ? event.target.files[0] : '';

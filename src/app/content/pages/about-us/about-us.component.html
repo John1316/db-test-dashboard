@@ -7,12 +7,12 @@
 
   <div class="card-content collapse show">
     <div class="card-header bg-primary bg-darken-2 text-center align-items-center card-title-bold text-capitalize row no-gutters">
-      <div class="col-lg-9">
+      <div class="col-9">
         <h3 class="mb-0 text-left">{{ 'About us page' }}</h3>
       </div>
-      <div class="col-lg-3 text-right">
-        <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn btn-glow btn-info"><i class="ficon ft-maximize"></i></button>
-        <button (click)="fullScreen()" *ngIf="fullscreed" class="btn btn-glow btn-info"><i class="ficon ft-minimize"></i></button>
+      <div class="col-3 text-right">
+        <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn box-shadow-2 mx-2 btn-light"><i class="ficon ft-maximize"></i></button>
+        <button (click)="fullScreen()" *ngIf="fullscreed" class="btn box-shadow-2 mx-2 btn-light"><i class="ficon ft-minimize"></i></button>
 
       </div>
     </div>
@@ -32,7 +32,7 @@
                       <th>Vision Title</th>
                       <th *ngIf="fullscreed">Vision and mission image</th>
 
-                      <th>&nbsp;</th>
+                      <th class="action_minwidth">Action</th>
                   </tr>
               </thead>
               <tbody>

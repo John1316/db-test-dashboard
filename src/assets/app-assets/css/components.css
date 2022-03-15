@@ -57,7 +57,7 @@ html {
           transition: all 0.7s;
           z-index: -1; }
       html body .content .content-wrapper {
-        padding: 2.1rem 2rem 0; }
+        padding: 2.1rem 2rem; }
         html body .content .content-wrapper .content-header-title {
           font-weight: 500;
           letter-spacing: 1px;

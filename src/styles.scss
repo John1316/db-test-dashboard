@@ -1,6 +1,45 @@
 
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '~@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$dashboard-digitalbond-primary: mat.define-palette(mat.$indigo-palette);
+$dashboard-digitalbond-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$dashboard-digitalbond-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$dashboard-digitalbond-theme: mat.define-light-theme((
+  color: (
+    primary: $dashboard-digitalbond-primary,
+    accent: $dashboard-digitalbond-accent,
+    warn: $dashboard-digitalbond-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($dashboard-digitalbond-theme);
+
+
 $mainColor: #290707;
 $secondaryColor: #ed2924;
+
+.text-primary{
+  color: $secondaryColor !important
+}
 .main-menu.menu-dark .navigation>li.active>a{
   border-right: 4px solid $mainColor;
   margin:0 !important;
@@ -35,9 +74,6 @@ $secondaryColor: #ed2924;
     text-align:center
   }
 }
-body.vertical-layout.vertical-menu-modern.menu-collapsed .navbar .navbar-header{
-  width: 72px !important;
-}
 .main_slider_img{
   height:200px !important;
   width:200px !important;
@@ -67,104 +103,54 @@ body.vertical-layout.vertical-menu-modern.menu-collapsed .navbar .navbar-header{
 
   }
   &:focus{
-    background-color: $secondaryColor !important;
+    background-color: $mainColor !important;
   border-color: #fff !important;
 
   }
 }
-.loader{
+.image_card_home{
+  height: 250px;
+  object-fit: contain;
+  width: auto;
+}
+.loader {
   position: fixed;
   inset: 0;
-  background-color: #E92823;
-  z-index: 999;
-  .lds-roller {
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    width: 80px;
-    height: 80px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  .lds-roller div {
-    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    transform-origin: 40px 40px;
-  }
-  .lds-roller div:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #fff;
-    margin: -4px 0 0 -4px;
-  }
-  .lds-roller div:nth-child(1) {
-    animation-delay: -0.036s;
-  }
-  .lds-roller div:nth-child(1):after {
-    top: 63px;
-    left: 63px;
-  }
-  .lds-roller div:nth-child(2) {
-    animation-delay: -0.072s;
-  }
-  .lds-roller div:nth-child(2):after {
-    top: 68px;
-    left: 56px;
-  }
-  .lds-roller div:nth-child(3) {
-    animation-delay: -0.108s;
-  }
-  .lds-roller div:nth-child(3):after {
-    top: 71px;
-    left: 48px;
-  }
-  .lds-roller div:nth-child(4) {
-    animation-delay: -0.144s;
-  }
-  .lds-roller div:nth-child(4):after {
-    top: 72px;
-    left: 40px;
-  }
-  .lds-roller div:nth-child(5) {
-    animation-delay: -0.18s;
-  }
-  .lds-roller div:nth-child(5):after {
-    top: 71px;
-    left: 32px;
-  }
-  .lds-roller div:nth-child(6) {
-    animation-delay: -0.216s;
-  }
-  .lds-roller div:nth-child(6):after {
-    top: 68px;
-    left: 24px;
-  }
-  .lds-roller div:nth-child(7) {
-    animation-delay: -0.252s;
-  }
-  .lds-roller div:nth-child(7):after {
-    top: 63px;
-    left: 17px;
-  }
-  .lds-roller div:nth-child(8) {
-    animation-delay: -0.288s;
-  }
-  .lds-roller div:nth-child(8):after {
-    top: 56px;
-    left: 12px;
-  }
-  @keyframes lds-roller {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+  z-index: 99999999999;
+  background: #290707;
+}
+.loader .loader-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
 
+.main-logo-loader {
+
+
+  animation: flip-vertical-left 1s ease-in-out infinite alternate-reverse both;
+}
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #290707;
+}
+.preloader .loader-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+
+.preloader .main-loader {
+
+
+  animation: flip-vertical-left 1s ease-in-out infinite alternate-reverse both;
 }
 .fullsizeModal{
   max-width:100%;
@@ -179,7 +165,7 @@ body.vertical-layout.vertical-menu-modern .content{
   &_data{
     position: absolute;
     inset:0;
-    background-color: $mainColor;
+    background-color: #f4f5fa;
     z-index:800;
 
     .lds-ring {
@@ -198,10 +184,10 @@ body.vertical-layout.vertical-menu-modern .content{
       width: 64px;
       height: 64px;
       margin: 8px;
-      border: 8px solid #fff;
+      border: 8px solid $mainColor;
       border-radius: 50%;
       animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border-color: #fff transparent transparent transparent;
+      border-color: $mainColor transparent transparent transparent;
     }
     .lds-ring div:nth-child(1) {
       animation-delay: -0.45s;
@@ -215,7 +201,26 @@ body.vertical-layout.vertical-menu-modern .content{
 
   }
 }
+.header-navbar .navbar-header{
+  padding: 4px 14px
+}
+.dropdown-user:hover{
+position:relative;
+}
+.dropdown-user:hover .dropdown-menu-user{
+  transform: scale(1,1);
+  opacity: 1;
+  display: block;
+}
+.dropdown-menu-user{
+  position:absolute
+}
 .action{
+
+  &_minwidth{
+    min-width: 181px;
+  }
+
   &_slider{
     padding:1.6rem 0 !important;
   }
@@ -269,9 +274,46 @@ body.vertical-layout.vertical-menu-modern .content{
     transform: rotate(360deg);
   }
 }
+.ngx-pagination{
+  padding-left:0;
+  .current{
+    background-color: $mainColor !important
+  }
+  a:hover{
+    color: $mainColor
+  }
+}
+footer{
+  a{
+    color: $secondaryColor !important
+  }
+}
+.notfound{
+  min-height:75vh;
+}
 
 
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@-webkit-keyframes flip-vertical-left {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+  }
+}
 
+@keyframes flip-vertical-left {
+  0% {
+    -webkit-transform: rotateY(0);
+    transform: rotateY(0);
+  }
+  100% {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+  }
+}
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

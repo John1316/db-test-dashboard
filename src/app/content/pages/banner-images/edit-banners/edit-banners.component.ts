@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { HomeService } from 'src/app/services/home.service';
 
@@ -19,7 +20,8 @@ export class EditBannersComponent implements OnInit {
   constructor(
     private _HomeService:HomeService,
     private _FormBuilder:FormBuilder,
-    private _Router:Router
+    private _Router:Router,
+    private _Title:Title
   ) {
     this.bannerImageEdit = this._FormBuilder.group({
 
@@ -38,7 +40,9 @@ export class EditBannersComponent implements OnInit {
     )
   }
   ngOnInit(): void {
-    this.homeFormData()
+    this.homeFormData();
+    this._Title.setTitle(`Digital bond | Banner images edit`)
+
   }
   services_banner_image(event:any){
     const file = event.target.files ? event.target.files[0] : '';

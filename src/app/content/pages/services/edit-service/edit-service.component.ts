@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from 'src/app/services/service.service';
 
@@ -17,11 +18,13 @@ export class EditServiceComponent implements OnInit {
   constructor(
     private _ServiceService:ServiceService,
     private _ActivatedRoute:ActivatedRoute,
-    private _Router:Router
+    private _Router:Router,
+    private _Title:Title
   ) { }
 
   ngOnInit(): void {
     this.getDetails()
+    this._Title.setTitle(`Digital Bond | ${this.service.en_title}`)
   }
   getDetails(){
     this.indexForNumbers = this._ActivatedRoute.snapshot.params["id"];

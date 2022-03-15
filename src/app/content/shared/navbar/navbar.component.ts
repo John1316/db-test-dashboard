@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, OnInit, Renderer2 } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,8 +9,11 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isFullScreen!: boolean;
-  elem: any;
   isLogined: boolean = false;
+  isCollapsed:boolean = false;
+  elem: any;
+  username: any;
+
   @HostListener('document:fullscreenchange', ['$event'])
   @HostListener('document:webkitfullscreenchange', ['$event'])
   @HostListener('document:mozfullscreenchange', ['$event'])
@@ -30,35 +33,45 @@ export class NavbarComponent implements OnInit {
 
   // GoFullScreen(){
 
-  //   let elem:any = document.documentElement;
-  //   let methodToBeInvoked = elem.requestFullscreen ||
-  //   elem.webkitRequestFullScreen || elem['mozRequestFullscreen']
-  //   ||
-  //   elem['msRequestFullscreen'];
-  //   if (methodToBeInvoked){
-  //     methodToBeInvoked.call(elem)
-  //   }else{
-  //     return elem;
-  //   }
-  // }
+
   constructor(
     @Inject(DOCUMENT) private document: any,
-    private _AuthService: AuthService
+    private _AuthService: AuthService,
+    public _Renderer2:Renderer2
   ) {
     _AuthService.currentUserData.subscribe(() => {
       if (_AuthService.currentUserData.getValue() == null) {
         this.isLogined = false;
-
-        // console.log(this._AuthService);
-        // this.firstName = this._AuthService.currentUserData.value.first_name;
-        // console.log(this.firstName);
       } else {
+        this.username = JSON.parse(
+          sessionStorage.getItem('currentUsername') || '{}'
+        );
         this.isLogined = true;
       }
     });
+
+  }
+  openMenu(){
+    this._Renderer2.addClass(document.body,'menu-open')
+    this._Renderer2.removeClass(document.body,'menu-expanded')
+    this._Renderer2.removeClass(document.body,'menu-collapsed')
+
+
+  }
+  openSidebar(){
+    this._Renderer2.addClass(document.body,'menu-expanded')
+    this._Renderer2.removeClass(document.body,'menu-collapsed')
+    this.isCollapsed = false
+  }
+  collpaseSidebar(){
+    this._Renderer2.addClass(document.body,'menu-collapsed')
+    this._Renderer2.removeClass(document.body,'menu-expanded')
+    this.isCollapsed = true
   }
   ngOnInit(): void {
     this.elem = document.documentElement;
+    this._Renderer2.addClass(document.body,'menu-expanded')
+
   }
   openFullscreen() {
     if (this.elem.requestFullscreen) {

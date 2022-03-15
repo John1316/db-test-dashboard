@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SliderService } from 'src/app/services/slider.service';
@@ -19,6 +20,8 @@ export class SlidersComponent implements OnInit {
   modalRef!:BsModalRef;
   sliderImage ='https://digitalbondmena.com/sliders/';
   fullscreed: boolean = false;
+  page!:number;
+
   loading: boolean = false;
 
     loadingAction: boolean = false;
@@ -29,11 +32,13 @@ export class SlidersComponent implements OnInit {
   constructor(
     private _SliderService:SliderService,
     private _Router:Router,
-    private _BsModalService:BsModalService
+    private _BsModalService:BsModalService,
+    private _Title:Title
   ) { }
 
   ngOnInit(): void {
-    this.showSliders()
+    this.showSliders();
+    this._Title.setTitle(`Digital Bond | Sliders`)
   }
   openModal(template:any){
 
@@ -66,7 +71,8 @@ export class SlidersComponent implements OnInit {
     )
   }
   onDelete(id:number , data:any){
-    this.loadingAction = true
+    if(confirm(`Are you sure to delete slider with id ${id}`)) {
+      this.loadingAction = true
 
     this._SliderService.deleteSlider(id,data ).subscribe(
       (response) => {
@@ -79,7 +85,8 @@ export class SlidersComponent implements OnInit {
           this.showSliders();
         }
       }
-    )
+      )
+    }
   }
   onCreate(){
     this.loadingAction = true

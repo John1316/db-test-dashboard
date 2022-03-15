@@ -21,11 +21,11 @@ import { CaseStudyModelsComponent } from './content/pages/case-study-models/case
 import { EditCaseStudyModelComponent } from './content/pages/case-study-models/edit-case-study-model/edit-case-study-model.component';
 import { CaseStudyModelGalleryComponent } from './content/pages/case-study-model-gallery/case-study-model-gallery.component';
 import { EditCaseStudyModalGalleryComponent } from './content/pages/case-study-model-gallery/edit-case-study-modal-gallery/edit-case-study-modal-gallery.component';
-import { AuthComponent } from './content/pages/auth/auth.component';
+import { AuthComponent } from './content/auth/auth.component';
 import { NotfoundComponent } from './content/shared/notfound/notfound.component';
 import { AuthGuard } from './services/auth.guard';
 import { TeamsComponent } from './content/pages/teams/teams.component';
-import { EditTeamsComponent } from './content/pages/teams/edit-teams/edit-teams.component';
+import { EditTeamComponent } from './content/pages/teams/edit-team/edit-team.component';
 
 const routes: Routes = [
 
@@ -50,11 +50,12 @@ const routes: Routes = [
   {path: 'sliders', canActivate:[AuthGuard] , component:SlidersComponent},
   {path: 'sliders/:id', canActivate:[AuthGuard] , component:EditSlidersComponent},
   {path: 'teams', canActivate:[AuthGuard] , component:TeamsComponent},
-  {path: 'teams/:id', canActivate:[AuthGuard] , component:EditTeamsComponent},
+  {path: 'teams/:id', canActivate:[AuthGuard] , component:EditTeamComponent},
   {path: 'banners', canActivate:[AuthGuard] , component:BannerImagesComponent},
   {path: 'banners/edit/:id', canActivate:[AuthGuard] , component:EditBannersComponent},
-  {path:'auth' , component:AuthComponent},
-  {path:'**' , component:NotfoundComponent},
+  {path: 'auth', component:AuthComponent},
+  {path: '**', component:NotfoundComponent}
+
 ];
 
 @NgModule({

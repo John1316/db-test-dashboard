@@ -31,9 +31,22 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/app-assets/vendors/css/vendors.min.css",
+              "src/assets/app-assets/css/bootstrap.min.css",
+              "src/assets/app-assets/css/bootstrap-extended.min.css",
+              "src/assets/app-assets/css/colors.min.css",
+              "src/assets/app-assets/css/components.min.css",
+              "src/assets/app-assets/css/core/menu/menu-types/vertical-menu-modern.css",
+              "src/assets/app-assets/fonts/simple-line-icons/style.min.css",
+              "src/assets/app-assets/css/core/colors/palette-gradient.min.css",
+              "src/assets/app-assets/css/pages/login-register.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/app-assets/vendors/js/vendors.min.js",
+              "src/assets/app-assets/js/core/app-menu.min.js",
+              "src/assets/app-assets/js/core/app.min.js"
+            ]
           },
           "configurations": {
             "production": {

@@ -11,15 +11,15 @@
 <div class="card-content collapse show">
 
   <div class="card-header bg-primary bg-darken-2 text-center align-items-center card-title-bold text-capitalize row no-gutters">
-    <div class="col-lg-9">
+    <div class="col-9">
 
       <h3 class="mb-0 text-left">{{pageName}}</h3>
     </div>
-    <div class="col-lg-3 text-right">
+    <div class="col-3 text-right">
 
     <!-- <button [attr.data-toggle]="'modal'" [attr.data-target]="['#fullSize']" class="btn btn-info btn-glow mx-2"><i class="ficon ft-maximize"></i></button> -->
-    <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn btn-gow btn-info"><i class="ficon ft-maximize"></i></button>
-    <button (click)="fullScreen()" *ngIf="fullscreed" class="btn btn-gow btn-info"><i class="ficon ft-minimize"></i></button>
+    <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn box-shadow-2 mx-2 btn-light"><i class="ficon ft-maximize"></i></button>
+    <button (click)="fullScreen()" *ngIf="fullscreed" class="btn box-shadow-2 mx-2 btn-light"><i class="ficon ft-minimize"></i></button>
     <button (click)="openModal(createModal)" class="btn btn-light"><i class="la la-plus" aria-hidden="true"></i></button>
     </div>
   </div>
@@ -45,12 +45,12 @@
                       <th>Image</th>
                       <th *ngIf="fullscreed">Banner image</th>
 
-                      <th>&nbsp;</th>
+                      <th class="action_minwidth">Action</th>
                   </tr>
               </thead>
               <tbody>
 
-                  <tr *ngFor="let service of services">
+                  <tr *ngFor="let service of services | paginate: { itemsPerPage: 5, currentPage: page }">
                       <td>{{service.id}}</td>
                       <td>{{service.en_title}}</td>
                       <td>{{service.en_slug}}</td>
@@ -74,6 +74,7 @@
               </tbody>
 
             </table>
+            <pagination-controls [maxSize]="5"  (pageChange)="page = $event" ></pagination-controls>
         </div>
 
   </div>

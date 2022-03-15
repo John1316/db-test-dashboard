@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { User } from '../content/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 
   currentUserData: any = new BehaviorSubject(null);
+  userDataContainer:any[]=[];
   constructor(private _HttpClient: HttpClient , private _Router:Router) {
-    if (localStorage.getItem('currentUser')) {
+    if (sessionStorage.getItem('currentUser' || '{}')) {
       this.saveCurrentUserToken();
       this._Router.navigate(['/home'])
     }
@@ -25,16 +27,16 @@ export class AuthService {
     );
   }
   saveCurrentUserToken() {
-    let encodedToken: any = localStorage.getItem('currentUser');
-
-    this.currentUserData.next(encodedToken);
+    let encodedToken: any = sessionStorage.getItem('currentUser' || '{}');
+    this.currentUserData.next(encodedToken)
+    this._Router.navigate(['/home']);
 
   }
 
 
   signOut(){
     this.currentUserData.next(null);
-    localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
     this._Router.navigate(['/auth']);
   }
 }

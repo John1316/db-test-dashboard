@@ -1,32 +1,30 @@
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
   <div class="main-menu-content">
-    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+    <ul (click)="navOpen()" class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" title="Home">
         <a routerLink="/home">
           <i class="la la-home"></i>
 
           <span class="menu-title" data-i18n="">Home</span>
         </a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" title="Home Page">
         <a routerLink="/home-page">
-          <i class="la la-house-damage"></i>
+          <i class="las la-house-damage"></i>
 
           <span class="menu-title" data-i18n="">Home Page</span>
         </a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" title="About us">
         <a routerLink="/about-us">
           <i class="la la-info"></i>
 
           <span class="menu-title" data-i18n="">About us</span>
-          <!-- <div class="row no-gutters justify-content-between align-items-center">
-                <i class="la la-angle-right"></i>
-            </div> -->
+
         </a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" title="Services">
         <a routerLink="/services">
           <i class="la la-cogs"></i>
 
@@ -34,7 +32,7 @@
 
         </a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" title="Clients">
         <a routerLink="/clients">
           <i class="la la-users"></i>
 
@@ -42,51 +40,43 @@
 
         </a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" title="Feedbacks">
+        <a routerLink="/feedbacks">
+          <i class="la la-comments"></i>
+
+          <span class="menu-title" data-i18n="">Feedbacks</span>
+
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" title="Case studies">
+        <a routerLink="/case-studies">
+          <i class="las la-user-check"></i>
+          <span class="menu-title" data-i18n="">Case studies</span>
+
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" title="Sliders">
+        <a routerLink="/sliders">
+          <i class="las la-images"></i>
+
+          <span class="menu-title" data-i18n="">Sliders</span>
+
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" title="Teams">
         <a routerLink="/teams">
-          <i class="la la-users-cog"></i>
+          <i class="las la-users-cog"></i>
 
           <span class="menu-title" data-i18n="">Teams</span>
 
         </a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/feedbacks">
-          <i class="la la-comments"></i>
-
-          <span class="menu-title" data-i18n="">Feedbacks</span>
-          <!-- <div class="row no-gutters justify-content-between align-items-center">
-                <i class="la la-angle-right"></i>
-            </div> -->
-        </a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/case-studies">
-          <i class="las la-user-check"></i>
-          <span class="menu-title" data-i18n="">Case studies</span>
-          <!-- <div class="row no-gutters justify-content-between align-items-center">
-                <i class="la la-angle-right"></i>
-            </div> -->
-        </a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a routerLink="/sliders">
-          <i class="las la-images"></i>
-
-          <span class="menu-title" data-i18n="">Sliders</span>
-          <!-- <div class="row no-gutters justify-content-between align-items-center">
-                <i class="la la-angle-right"></i>
-            </div> -->
-        </a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li class="nav-item" routerLinkActive="active" title="Banners">
         <a routerLink="/banners">
           <i class="la la-image"></i>
 
           <span class="menu-title" data-i18n="">Banners</span>
-          <!-- <div class="row no-gutters justify-content-between align-items-center">
-                <i class="la la-angle-right"></i>
-            </div> -->
+
         </a>
       </li>
     </ul>

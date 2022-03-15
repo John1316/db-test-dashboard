@@ -10,15 +10,15 @@
 
   <div class="card-content collapse show">
     <div class="card-header bg-primary bg-darken-2 text-center align-items-center card-title-bold text-capitalize row no-gutters">
-      <div class="col-lg-9">
+      <div class="col-9">
 
         <h3 class="mb-0 text-left">{{pageName}}</h3>
       </div>
-      <div class="col-lg-3 text-right">
+      <div class="col-3 text-right">
 
 
-          <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn btn-glow btn-info"><i class="ficon ft-maximize"></i></button>
-          <button (click)="fullScreen()" *ngIf="fullscreed" class="btn btn-glow btn-info"><i class="ficon ft-minimize"></i></button>
+          <button (click)="fullScreen()" *ngIf="!fullscreed" class="btn box-shadow-2 mx-2 btn-light"><i class="ficon ft-maximize"></i></button>
+          <button (click)="fullScreen()" *ngIf="fullscreed" class="btn box-shadow-2 mx-2 btn-light"><i class="ficon ft-minimize"></i></button>
           <button (click)="openModal(createModal)" class="btn btn-light"><i class="la la-plus" aria-hidden="true"></i></button>
 
         </div>
@@ -37,36 +37,40 @@
       <div class="card-content collapse show">
           <div class="card-body card-dashboard table-responsive">
               <table class="table table-striped table-bordered dom-jQuery-events">
-              <thead>
-                  <tr>
-                      <th>id</th>
-                      <th>Title</th>
-                      <th>Type</th>
-                      <th>Image</th>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>Image</th>
 
-                      <th>&nbsp;</th>
-                  </tr>
-              </thead>
-              <tbody>
+                        <th class="action_minwidth">Action</th>
+                      </tr>
+                </thead>
+                <tbody>
 
-                  <tr *ngFor="let client of clients">
-                      <td>{{client.id}}</td>
-                      <td>{{client.en_title}}</td>
-                      <td>{{client.type}}</td>
-                      <td *ngIf="!fullscreed"><button type="button" [attr.data-toggle]="'modal'" [attr.data-target]="['#clientGallery'+client.id]" class="btn btn-primary text-white"><i class="la la-search fw-600" aria-hidden="true"></i></button></td>
-                      <td *ngIf="fullscreed"><img [src]="clientImage+client.logo" width="50px" height="40px" alt=""></td>
+                    <tr *ngFor="let client of clients | paginate: { itemsPerPage: 5, currentPage: page }">
+                        <td>{{client.id}}</td>
+                        <td>{{client.en_title}}</td>
+                        <td>{{client.type}}</td>
+                        <td *ngIf="!fullscreed"><button type="button" [attr.data-toggle]="'modal'" [attr.data-target]="['#clientGallery'+client.id]" class="btn btn-primary text-white"><i class="la la-search fw-600" aria-hidden="true"></i></button></td>
+                        <td *ngIf="fullscreed"><img [src]="clientImage+client.logo" width="50px" height="40px" alt=""></td>
 
-                      <td class="row justify-content-center no-gutters">
-                        <a routerLink="/clients/{{client?.id}}" class="btn btn-round mr-1 btn-success"><i class="la la-edit"></i></a>
-                        <button (click)="onDelete(client.id , clientImage)" class="btn btn-round mr-1 btn-danger"><i class="la la-trash"></i></button>
-                      </td>
-                  </tr>
+                        <td class="row justify-content-center no-gutters">
+                          <a routerLink="/clients/{{client?.id}}" class="btn btn-round mr-1 btn-success"><i class="la la-edit"></i></a>
+                          <button (click)="onDelete(client.id , clientImage)" class="btn btn-round mr-1 btn-danger"><i class="la la-trash"></i></button>
+                        </td>
+                    </tr>
 
 
 
-              </tbody>
+                </tbody>
 
               </table>
+              <pagination-controls [maxSize]="5"  (pageChange)="page = $event" >
+
+              </pagination-controls>
+
           </div>
 
     </div>
