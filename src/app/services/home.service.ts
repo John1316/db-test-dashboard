@@ -12,6 +12,7 @@ export class HomeService {
     private _HttpClient:HttpClient
   ) { }
   getHome():Observable<any>{
+
     return this._HttpClient.get(`${environment.apiUrl}home_page_index`)
   }
   updateHome(

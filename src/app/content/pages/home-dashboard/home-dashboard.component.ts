@@ -11,7 +11,7 @@ import { FeedbacksService } from 'src/app/services/feedbacks.service';
   styleUrls: ['./home-dashboard.component.scss']
 })
 export class HomeDashboardComponent implements OnInit {
-  loading: boolean = true;
+  loading: boolean = false;
   caseStudyStatistics!:number;
   clientsStatistics!:number;
   feedbacksStatistics!:number;
@@ -25,6 +25,8 @@ export class HomeDashboardComponent implements OnInit {
     private _Title:Title
   ) { }
   showClientMessage(){
+    this.loading = true;
+
     this._FeedbacksService.getClientMessages().subscribe(
       (response) => {
         this.clientMessages = response.rows;
@@ -35,6 +37,8 @@ export class HomeDashboardComponent implements OnInit {
 
   }
   showClientsLength(){
+    this.loading = true;
+
     this._ClientsService.getClients().subscribe(
       (response) => {
         this.clientsStatistics = response.rows.length
@@ -43,6 +47,7 @@ export class HomeDashboardComponent implements OnInit {
     )
   }
   showCaseStudyLength(){
+    this.loading = true;
 
     this._CasestudyService.getCaseStudy().subscribe(
       (response) => {
@@ -55,9 +60,11 @@ export class HomeDashboardComponent implements OnInit {
 
 
   showFeedbacksLength(){
+    this.loading = true;
 
     this._FeedbacksService.getFeedbacks().subscribe(
       (response) => {
+        
         this.feedbacksStatistics = response.rows.length;
         this.loading = false;
 
@@ -69,6 +76,12 @@ export class HomeDashboardComponent implements OnInit {
     this.showClientsLength();
     this.showCaseStudyLength();
     this.showFeedbacksLength();
+    // setInterval(()=>{
+    //   this.showClientMessage()
+    // }, 10000)
+    // setTimeout(() => {
+    //   this.loading = true
+    // }, 3000);
     this._Title.setTitle(`Digital Bond | Home`)
   }
 }

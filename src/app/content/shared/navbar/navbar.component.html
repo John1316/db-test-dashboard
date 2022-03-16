@@ -34,7 +34,7 @@
     <div class="navbar-container content">
       <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="nav navbar-nav mr-auto float-left">
-          <li class="nav-item  d-lg-block nav-toggle" *ngIf="!isCollapsed" (click)="collpaseSidebar()">
+          <li class="nav-item d-none d-lg-block nav-toggle" *ngIf="!isCollapsed" (click)="collpaseSidebar()">
             <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"
               ><i
                 class="toggle-icon ft-toggle-left font-medium-3"
@@ -42,7 +42,7 @@
               ></i
             ></a>
           </li>
-          <li class="nav-item  d-lg-block nav-toggle" *ngIf="isCollapsed" (click)="openSidebar()">
+          <li class="nav-item d-none d-lg-block nav-toggle" *ngIf="isCollapsed" (click)="openSidebar()">
             <a class="nav-link modern-nav-toggle pr-0" data-toggle="expand"
               ><i
                 class="toggle-icon ft-toggle-right font-medium-3"
