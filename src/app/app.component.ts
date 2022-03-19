@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
       this.getCurrentUserData()
+      this._AuthService.autoLogout()
   }
 
 }

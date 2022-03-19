@@ -69,6 +69,8 @@ export class CasestudyComponent implements OnInit {
     )
   }
   onDelete(id:number , data:any){
+    if(confirm(`Are you sure to delete case study with id ${id}`)) {
+
     this.loadingAction = true;
 
     this._CasestudyService.deleteClient(id,data ).subscribe(
@@ -84,6 +86,7 @@ export class CasestudyComponent implements OnInit {
         }
       }
     )
+    }
   }
   onCreate(){
     this.loadingAction = true;

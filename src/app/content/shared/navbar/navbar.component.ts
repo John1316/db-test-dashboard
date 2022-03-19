@@ -44,7 +44,7 @@ export class NavbarComponent implements OnInit {
         this.isLogined = false;
       } else {
         this.username = JSON.parse(
-          sessionStorage.getItem('currentUsername') || '{}'
+          localStorage.getItem('currentUsername') || '{}'
         );
         this.isLogined = true;
       }

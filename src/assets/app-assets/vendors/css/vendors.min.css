@@ -3701,7 +3701,7 @@
 }
 
 .la-trash:before {
-  content: "\f34c"
+  content: "\f34c" !important
 }
 
 .la-trash-o:before {
